@@ -41,4 +41,8 @@ TODO take all words, usernames and passwords, concat and best64 them. save as `g
 
 # CrackMapExec -- save usernames, passwords, hashes
 
-TODO need the `cmedb` commands to dump users, passwords and hashes from cme
+`{ echo export creds csv creds.csv; echo exit; } | cmedb ; awk -F "\"*,\"*" '{print $3}' creds.csv > users.txt` save users to `users.txt`
+
+`{ echo export creds plaintext passwords.txt; echo exit; } | cmedb` save plaintext/passwords to `passwords.txt`
+
+`{ echo export creds hashes hashes.txt; echo exit; } | cmedb` save hashes to `hashes.txt`
