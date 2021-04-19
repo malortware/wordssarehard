@@ -26,7 +26,7 @@ TODO take all words, usernames and passwords, concat and best64 them. save as `g
 
 # CeWL -- Add to the Wordlist
 
-`cewl -d 3 -o -a -m 4 --with-numbers -v -w wordlist.txt https://target.domain/` 
+`cewl -d 3 -a -m 4 --with-numbers -v -w wordlist.txt https://target.domain/` 
 
 # CrackMapExec -- use guesses
 
